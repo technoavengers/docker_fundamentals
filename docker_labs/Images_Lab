@@ -1,0 +1,26 @@
+=
+docker pull httpd
+
+######################## Check Images ###############################################
+docker images
+
+######################## Build an image from docker file ############################
+docker build .
+
+###################### Tag an image #################################################
+docker tag myimage myimage:1.0.1
+
+#################### Build and tag an image from docker file #########################
+docker build -t myimage:2.0.0 .
+
+######################## Push an image ###############################################
+docker push myimage:2.0.0
+
+########################## Save an image to a tar file ##########################
+docker save myimage:2.0.0 > myimage:2.0.0.tar
+
+########################## Load an image to a tar file ##########################
+docker load -i myimage:2.0.0.tar
+
+
+

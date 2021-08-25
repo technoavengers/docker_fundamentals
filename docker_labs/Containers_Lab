@@ -1,0 +1,49 @@
+###################### Run Container from an image ######################
+docker run  httpd
+
+###################### Run Container & assign it a name ######################
+docker run -name httpd-new httpd
+
+###################### Run Container in detached mode ######################
+docker run -d httpd
+
+###################### Map a specific Port ##################################
+docker run -d -p 8080:80 --name  httpd-new httpd
+
+
+###################### Map all ports ##################################
+docker run -d -P --name  httpd-new httpd
+
+################## Pull and run a specific Version ################################
+docker run -d -p 8081:80 --name  httpd-new httpd:alpine3.14
+
+##################  List of running Container #############################
+docker ps
+
+##################  List of all Container #############################
+docker ps -a
+
+##################### Stop Container ############################
+docker stop <container_id>
+
+##################### Start Container ############################
+docker start <container_id>
+
+################## Remove Container ##############################
+docker rm <container_id>
+
+################## Remove a running Container ##############################
+docker rm -f <container_id>
+
+################## Start a shell inside the container  ##############################
+docker exec -it <container_id> sh
+
+################## Copy a file from container to host ##############################
+docker cp <container_id>:/usr/local/apache2/logs/httpd.pid httpd-new.pid
+
+################## Copy a file from host to container ##############################
+docker cp httpd-new.pid <container_id>:/usr/local/apache2/logs
+
+
+######################## Setting up an environment variable ###################
+docker run -e LOCATION=US mywebapp

@@ -1,0 +1,18 @@
+######################## Docker Version #################################################
+docker Version
+
+######################## Logs of the container #################################################
+docker logs <container_id>
+
+######################## Show Docker process #################################################
+docker top <container_id>
+
+######################## Detailed Info about an object #################################################
+docker inspect httpd
+docker inspect <container_id>
+
+######################## Mapped port of a container #################################################
+docker port <container_id>
+
+##################### Docker networks ############################################
+docker network ls

@@ -46,13 +46,6 @@ docker run --name myhttpd  -d httpd
 docker export myhttpd -o myhttpd.tar
 cat myhttpd.tar | docker import - myhttpd1:latest
 
-######################## Pushing image to aws ECR ##########################
-aws configure
-aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 418988682717.dkr.ecr.us-east-1.amazonaws.com
-docker tag myimage 418988682717.dkr.ecr.us-east-1.amazonaws.com/technoavengers
-docker push 418988682717.dkr.ecr.us-east-1.amazonaws.com/technoavengers   
-
-
 ###################### Search an image ########################
 docker search nginx --limit 5
 docker search nginx --limit 5 --filter "is_official=true"

@@ -1,11 +1,13 @@
 =
-docker pull httpd
+docker image pull httpd
 
 ######################## Check Images ###############################################
 docker images
+docker image ls
 
 ######################## Build an image from docker file ############################
 docker build .
+docker image -t imagename:1.0.0 .
 
 ###################### Tag an image #################################################
 docker tag myimage myimage:1.0.1
@@ -22,5 +24,39 @@ docker save myimage:2.0.0 > myimage:2.0.0.tar
 ########################## Load an image to a tar file ##########################
 docker load -i myimage:2.0.0.tar
 
+######################## To check image history #################################
+docker image history <name>
+
+######################## Inspect Image #################################
+docker image inspect <name>
+docker image inspect nginx --format='{{.Metadata}}'
+docker image inspect nginx --format='{{json .Metadata}}'
+docker image inspect nginx --format='{{.ContainerConfig.Hostname}}'
 
 
+######################## Prune Dangling Image #################################
+# It will only cleanup dangling images - images that does not have any tag and not referenced by any container
+docker image prune 
+
+######################## Prune Image not referenced by any container #################################
+docker image prune -a 
+
+###################### Converting to Single Layer Image #################################################
+docker run --name myhttpd  -d httpd 
+docker export myhttpd -o myhttpd.tar
+cat myhttpd.tar | docker import - myhttpd1:latest
+
+######################## Pushing image to aws ECR ##########################
+aws configure
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 418988682717.dkr.ecr.us-east-1.amazonaws.com
+docker tag myimage 418988682717.dkr.ecr.us-east-1.amazonaws.com/technoavengers
+docker push 418988682717.dkr.ecr.us-east-1.amazonaws.com/technoavengers   
+
+
+###################### Search an image ########################
+docker search nginx --limit 5
+docker search nginx --limit 5 --filter "is_official=true"
+
+###################### Exporting and Importing image #################################################
+docker save busybox -o busybox.tar
+docker load -i busybox.tar 

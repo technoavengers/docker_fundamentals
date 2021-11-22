@@ -1,0 +1,15 @@
+#### Step1: Create a container
+docker run -dt --name httpd -p 8083:80 httpd
+
+#### Step2: Change the file inside the container 
+docker exec -it httpd sh
+apt install update
+apt install vim
+cd htdocs
+vi index.html
+
+#### Step 3: Commit the changes and create newer image
+docker container commit httpd httpd-new
+
+#### Step 4: Create the container from the newer image 
+docker run -dt --name httpd-new -p 8084:80 httpd-new

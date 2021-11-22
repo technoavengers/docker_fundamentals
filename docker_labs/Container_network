@@ -1,0 +1,28 @@
+######################### Container communication in custom network #################
+docker network create custom_network
+docker run -d --name httpd_net --network custom_network httpd
+docker run -d --name nginx_net --network custom_network nginx
+docker exec -it nginx_net sh
+curl httpd_net:80
+docker inspect container nginx_net
+docker inspect network custom_network
+brctl show (bridge-utils)
+
+################## Checking container network interface & Ip #################
+docker run -d --name httpd_bridge httpd 
+docker exec -it httpd_bridge sh
+apt-get update && apt-get install net-tools
+ifconfig
+route -n
+
+################## Host network #################
+docker run -d --name httpd_host --network host httpd
+apt-get update && apt-get install net-tools 
+ifconfig
+netstat -ntlp
+
+docker run -d --name httpd_bridge  httpd 
+docker exec -it httpd_bridge sh
+apt-get update && apt-get install net-tools
+ifconfig
+netstat -ntlp

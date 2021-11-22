@@ -1,0 +1,11 @@
+######################## List volume #################################################
+docker volume ls
+
+######################## Create a volume #################################################
+docker volume create myvolume
+
+######################## Create container with volume #################################################
+docker run -dt --name busybox -v myvolume:/etc busybox sh
+
+######################## Inspect volume #################################################
+docker volume inspect myvolume

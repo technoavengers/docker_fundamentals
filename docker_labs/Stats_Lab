@@ -16,3 +16,4 @@ docker port <container_id>
 
 ##################### Docker networks ############################################
 docker network ls
+docker inspect bridge

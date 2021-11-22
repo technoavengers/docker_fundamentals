@@ -1,0 +1,6 @@
+
+######################## Pushing image to aws ECR ##########################
+aws configure
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 418988682717.dkr.ecr.us-east-1.amazonaws.com
+docker tag myimage 418988682717.dkr.ecr.us-east-1.amazonaws.com/technoavengers
+docker push 418988682717.dkr.ecr.us-east-1.amazonaws.com/technoavengers   

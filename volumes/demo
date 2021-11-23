@@ -15,3 +15,9 @@ docker image build -t volume-demo .
 docker run -dt --name volume-demo volume-demo
 docker volume ls
 cd /var/lib/docker/volumes/
+
+################ Named volume #####################
+docker run -dt --name volume-demo -v myvolume:/myvolume volume-demo
+
+################# Bind Mount ###########################
+docker run -dt --name bind-demo -v ~/index/:/usr/share/nginx/html nginx

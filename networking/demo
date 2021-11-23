@@ -29,7 +29,6 @@ docker exec -it nginx_net sh
 curl httpd_net:80
 docker inspect container nginx_net
 docker inspect network custom_network
-brctl show (bridge-utils)
 
 ################## Checking container network interface & Ip #################
 docker run -d --name httpd_bridge httpd 
@@ -44,9 +43,7 @@ docker container disconnect custom_network httpd_net
 docker container connect custom_network httpd_net
 
 ################## Host network #################
-docker run -d --name httpd_host --network host httpd
-apt-get update 
-apt install net-tools 
+docker run -dt --name alpine_host --network host alpine
 ifconfig
 netstat -ntlp
 
@@ -55,3 +52,9 @@ docker exec -it httpd_bridge sh
 apt-get update && apt-get install net-tools
 ifconfig
 netstat -ntlp
+
+################## None network #################
+docker container run -dt --name alpine-none --network none alpine
+docker exec -it alpine-none sh
+ifconfig
+ping google.com

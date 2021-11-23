@@ -32,6 +32,9 @@ docker start <container_id>
 ################## Remove Container ##############################
 docker rm <container_id>
 
+############# Remove all running container ######################
+docker rm -f $(docker ps -a -q)
+
 ################## Remove a running Container ##############################
 docker rm -f <container_id>
 

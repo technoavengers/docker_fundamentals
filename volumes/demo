@@ -9,3 +9,9 @@ docker run -dt --name busybox -v myvolume:/etc busybox sh
 
 ######################## Inspect volume #################################################
 docker volume inspect myvolume
+
+###################### Create volume using docker file #######################################
+docker image build -t volume-demo .
+docker run -dt --name volume-demo volume-demo
+docker volume ls
+cd /var/lib/docker/volumes/

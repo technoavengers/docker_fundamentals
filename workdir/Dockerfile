@@ -1,5 +1,4 @@
 FROM busybox
-RUN mkdir /demo
 WORKDIR /demo
 RUN touch file01.txt
 WORKDIR example1

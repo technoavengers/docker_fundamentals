@@ -34,7 +34,7 @@ docker inspect network custom_network
 docker run -d --name httpd_bridge httpd 
 docker exec -it httpd_bridge sh
 apt-get update 
-apt-get install net-tools
+apt install net-tools
 ifconfig
 route -n
 
@@ -49,7 +49,8 @@ netstat -ntlp
 
 docker run -d --name httpd_bridge  httpd 
 docker exec -it httpd_bridge sh
-apt-get update && apt-get install net-tools
+apt-get update 
+apt install net-tools
 ifconfig
 netstat -ntlp
 
@@ -58,3 +59,14 @@ docker container run -dt --name alpine-none --network none alpine
 docker exec -it alpine-none sh
 ifconfig
 ping google.com
+
+################### 
+1. Create a container in bridge network
+2. Create a container in host network
+3. Can they communicate using IP/name?
+
+
+##################
+1. Create a container in default bridge network
+2. Create a container in custom bridge network
+3. Can they communicate?
